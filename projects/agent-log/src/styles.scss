@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@progress/kendo-theme-default/scss/grid/_index.scss";
+
+@font-face {
+    font-family: "vazirfd";
+    src: local("vazirfd"), url(./assets/fonts/Vazir-FD.ttf) format("truetype");
+}
+
+// body {
+//     $font-family: "vazirfd";
+// }
