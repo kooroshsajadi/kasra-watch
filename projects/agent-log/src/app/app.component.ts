@@ -11,7 +11,7 @@ import { CommonService } from './services/common.service';
 export class AppComponent{
 
   constructor (commonService: CommonService) {
-    // commonService.getAgentResults()
+    commonService.getAgentResults()
   }
 
   public columns: any[] = [{field: "َAccount"}, {field: "Date"}, {field: "ُStatus"}, {field: "More"}];
