@@ -1,30 +1,32 @@
 <kendo-grid 
+[data]="kendoSource"
 [sortable]="true"
 [pageable]="true"
+[pageSize]="pageSize"
+[skip]="skip"
 >
   <kendo-grid-column
-    field="َAccount"
-    title="شرکت"
+    field= "accountName"
+    title= "نام"
   >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field= "Date"
+    field= "lastUpdate"
     title= "آخرین به روزرسانی"
     >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field = "ُStatus"
+    field = "status"
     title = "وضعیت"
     >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field = "More"
+    field = "description"
     title = "بیشتر"
     >
-    ...
   </kendo-grid-column>
 
   <ng-template kendoGridNoRecordsTemplate></ng-template>

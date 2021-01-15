@@ -7,6 +7,8 @@ import { RTL } from '@progress/kendo-angular-l10n';
 import { CommonService } from './services/common.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'
+// TODO npm uninstall -S angular-in-memory-web-api
+// TODO npm uninstall -D angular-in-memory-web-api
 
 @NgModule({
   declarations: [
