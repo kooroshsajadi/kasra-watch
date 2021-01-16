@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
+import { JalaliPipe } from './shared/jalali-pipe';
+import * as moment from 'jalali-moment';
+
 
 @Component({
   selector: 'app-root',
@@ -65,6 +68,7 @@ export class AppComponent{
         else {
           row.Status = "حاد";
         }
+        row.LatestUpdateOn = moment(row.LatestUpdateOn).locale('fa').format('YYYY/M/D');
       });
       console.log(this.datasource)
       this.loadItems();
