@@ -23,6 +23,7 @@ export class AppComponent{
   // public gridDataResult: GridDataResult = {data: products, total: products.length};
 
   title = 'agent-log';
+  showDesc: boolean = true;
   skip = 0;
   kendoSource: any = [
     {
@@ -50,5 +51,9 @@ export class AppComponent{
   loadGrid() {
     this.kendoSource.gridData = this.items;
     this.loadItems();
+  }
+
+  onHandleClose() {
+    this.showDesc = false;
   }
 }

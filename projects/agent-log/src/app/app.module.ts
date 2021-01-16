@@ -8,6 +8,7 @@ import { CommonService } from './services/common.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'
 import { DescriptionComponent } from './components/description.component'
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
 // TODO npm uninstall -S angular-in-memory-web-api
 // TODO npm uninstall -D angular-in-memory-web-api
 
@@ -20,7 +21,8 @@ import { DescriptionComponent } from './components/description.component'
     BrowserModule,
     GridModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonsModule
   ],
 
    // Enable Right-to-Left mode for Kendo UI components

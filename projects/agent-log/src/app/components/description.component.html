@@ -1,2 +1,41 @@
-<div class="backdrop"></div>
-<div></div>
+<div class="backdrop" (click)="onClose()"></div>
+<div class="description-box">
+    <div>
+        <kendo-grid 
+        [data]="dataSource"
+        [sortable]="true"
+        [pageable]="true"
+        [pageSize]="pageSize"
+        [skip]="skip"
+        >
+            <kendo-grid-column
+            field= "accountName"
+            title= "نام"
+            >
+            </kendo-grid-column>
+        
+            <kendo-grid-column
+                field= "lastUpdate"
+                title= "آخرین به روزرسانی"
+            >
+            </kendo-grid-column>
+        
+            <kendo-grid-column
+                field = "status"
+                title = "وضعیت"
+            >
+            </kendo-grid-column>
+        
+            <kendo-grid-column
+                field = "description"
+                title = "بیشتر"
+            >
+            </kendo-grid-column>
+
+            <ng-template kendoGridNoRecordsTemplate></ng-template>
+        </kendo-grid>
+    </div>
+    <div class="description-box-actions">
+        <button kendoButton (click)="onClose()">بستن</button>
+    </div>
+</div>
