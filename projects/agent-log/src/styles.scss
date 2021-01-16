@@ -1,12 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 // @import "~@progress/kendo-theme-bootstrap/dist/all.scss";
 @import "~@progress/kendo-theme-bootstrap/scss/grid/_index.scss";
+@import "~@progress/kendo-theme-bootstrap/scss/button/_index.scss";
+@import "~@progress/kendo-theme-bootstrap/scss/action-buttons/_index.scss";
 
 @font-face {
     font-family: "vazirfd";
     src: local("vazirfd"), url(./assets/fonts/Vazir-FD.ttf) format("truetype");
 }
 
-// body {
-//     $font-family: "vazirfd";
-// }
+body {
+    font-family: "vazirfd";
+}

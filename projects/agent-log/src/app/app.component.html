@@ -1,5 +1,5 @@
 <kendo-grid 
-[data] = "kendoSource"
+[data] = "datasource"
 [sortable] = "true"
 [pageable] = "true"
 [pageSize] = "pageSize"
@@ -7,27 +7,28 @@
 (cellClick) = "onShowDesc($event)"
 >
   <kendo-grid-column
-    field = "accountName"
+    field = "AccountName"
     title = "نام"
   >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field = "lastUpdate"
+    field = "LatestUpdateOn"
     title = "آخرین به روزرسانی"
     >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field = "status"
+    field = "Status"
     title = "وضعیت"
     >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field = "description"
+    field = "Description"
     title = "بیشتر"
     >
+    ...
   </kendo-grid-column>
 
   <ng-template kendoGridNoRecordsTemplate></ng-template>

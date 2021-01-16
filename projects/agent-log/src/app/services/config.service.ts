@@ -29,19 +29,12 @@ export class ConfigService {
     return this.http.post(this.serverAddress + '/' + url, JSON.stringify(body), httpOptions);
   }
 
-  public get(url, mode?): Observable<any> {
-    let httpOptions
-    if (mode == "zip") {
-      httpOptions = {
-        headers: new HttpHeaders({'Content-Type': 'application/json'}),
-        responseType: 'blob'
-      }
-    }
-    else {
-      httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-      }
-    }
-    return this.http.get(this.serverAddress + '/' + url, httpOptions);
+  public get(url: string): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({'Access-Control-Allow-Origin': 'http://localhost:4200'}),
+      responseType: 'blob'
+    } 
+   
+    return this.http.get(this.serverAddress + '/' + url);
   }
 }

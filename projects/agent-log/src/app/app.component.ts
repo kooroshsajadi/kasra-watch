@@ -10,34 +10,20 @@ import { CommonService } from './services/common.service';
 })
 export class AppComponent{
 
-  constructor (commonService: CommonService) {
-    // commonService.getAgentResults();
+  constructor (private commonService: CommonService) {
+    this.fillResultGrid();
     // this.loadGrid();
   }
-
-  // public columns: any[] = [{field: "َAccount"}, {field: "Date"}, {field: "ُStatus"}, {field: "More"}];
-  // public bindingType: String = 'array';
-  // public view: Observable<GridDataResult>;
-
-  // public gridData: any = products;
-  // public gridDataResult: GridDataResult = {data: products, total: products.length};
 
   title = 'agent-log';
   showDesc: boolean = false;
   skip = 0;
-  kendoSource: any = [
-    {
-      accountName: "تجارت گستر نوین",
-      lastUpdate: new Date(),
-      status: "حاد",
-      description: "..."
-    }
-  ];
+  datasource: any = [];
   pageSize = 10;
   private items = new Array();
 
   private loadItems(): void {
-    this.kendoSource = {
+    this.datasource = {
         data: this.items.slice(this.skip, this.skip + this.pageSize),
         total: this.items.length
     };
@@ -49,7 +35,8 @@ export class AppComponent{
   }
 
   loadGrid() {
-    this.kendoSource.gridData = this.items;
+    this.commonService.getAgentResults()
+    this.datasource.gridData = this.items;
     this.loadItems();
   }
 
@@ -58,6 +45,31 @@ export class AppComponent{
   }
 
   onShowDesc({ sender, rowIndex, columnIndex, dataItem, isEdited }) {
-    this.showDesc = true;
+    if(columnIndex === 3) {
+      this.showDesc = true;
+    }
   }
+
+  fillResultGrid() {
+    this.commonService.getAgentResults().subscribe(success => {
+      console.log(success)
+      console.log(success.message)
+      console.log(success.data)
+      this.items = success;
+      this.datasource.data = this.items;
+      this.datasource.data.forEach(row => {
+        row.Description = "...";
+        if (row.Status === 0) {
+          row.Status = "عادی";
+        }
+        else {
+          row.Status = "حاد";
+        }
+      });
+      console.log(this.datasource)
+      this.loadItems();
+    });
+  }
+
+
 }
