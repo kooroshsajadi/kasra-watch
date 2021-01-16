@@ -23,7 +23,7 @@ export class AppComponent{
   // public gridDataResult: GridDataResult = {data: products, total: products.length};
 
   title = 'agent-log';
-  showDesc: boolean = true;
+  showDesc: boolean = false;
   skip = 0;
   kendoSource: any = [
     {
@@ -55,5 +55,9 @@ export class AppComponent{
 
   onHandleClose() {
     this.showDesc = false;
+  }
+
+  onShowDesc({ sender, rowIndex, columnIndex, dataItem, isEdited }) {
+    this.showDesc = true;
   }
 }

@@ -1,19 +1,20 @@
 <kendo-grid 
-[data]="kendoSource"
-[sortable]="true"
-[pageable]="true"
-[pageSize]="pageSize"
-[skip]="skip"
+[data] = "kendoSource"
+[sortable] = "true"
+[pageable] = "true"
+[pageSize] = "pageSize"
+[skip] = "skip"
+(cellClick) = "onShowDesc($event)"
 >
   <kendo-grid-column
-    field= "accountName"
-    title= "نام"
+    field = "accountName"
+    title = "نام"
   >
   </kendo-grid-column>
 
   <kendo-grid-column
-    field= "lastUpdate"
-    title= "آخرین به روزرسانی"
+    field = "lastUpdate"
+    title = "آخرین به روزرسانی"
     >
   </kendo-grid-column>
 
@@ -31,4 +32,4 @@
 
   <ng-template kendoGridNoRecordsTemplate></ng-template>
 </kendo-grid>
-<app-description *ngIf="showDesc" (close)="onHandleClose()"></app-description>
+<app-description *ngIf = "showDesc" (close) = "onHandleClose()"></app-description>
