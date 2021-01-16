@@ -74,6 +74,4 @@ export class AppComponent{
       this.loadItems();
     });
   }
-
-
 }
