@@ -5,10 +5,11 @@
 @import "~@progress/kendo-theme-bootstrap/scss/action-buttons/_index.scss";
 
 @font-face {
-    font-family: "vazirfd";
-    src: local("vazirfd"), url(./assets/fonts/Vazir-FD.ttf) format("truetype");
+    font-family: vazirfd;
+    font-style: normal;
+    src: url('./assets/fonts/Vazir-FD.ttf');
 }
 
-body {
-    font-family: "vazirfd";
+* {
+    font-family: "vazirfd" ;
 }
