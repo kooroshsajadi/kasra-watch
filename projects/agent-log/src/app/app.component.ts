@@ -37,11 +37,11 @@ export class AppComponent{
     this.loadItems();
   }
 
-  loadGrid() {
-    this.commonService.getAgentResults()
-    this.datasource.gridData = this.items;
-    this.loadItems();
-  }
+  // loadGrid() {
+  //   this.commonService.getAgentResults()
+  //   this.datasource.gridData = this.items;
+  //   this.loadItems();
+  // }
 
   onHandleClose() {
     this.showDesc = false;
@@ -56,8 +56,8 @@ export class AppComponent{
   fillResultGrid() {
     this.commonService.getAgentResults().subscribe(success => {
       this.items = success;
-      this.datasource.data = this.items;
-      this.datasource.data.forEach(row => {
+      // this.datasource.data = this.items;
+      this.items.forEach(row => {
         row.Description = "...";
         if (row.Status === 0) {
           row.Status = "عادی";
@@ -67,7 +67,6 @@ export class AppComponent{
         }
         row.LatestUpdateOn = moment(row.LatestUpdateOn).locale('fa').format('YYYY/M/D');
       });
-      console.log(this.datasource)
       this.loadItems();
     });
   }

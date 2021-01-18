@@ -19,4 +19,8 @@ export class CommonService {
     //     this.diagnosticsResult = results
     //   });
   }
+
+  public getAgentResultDesc(id: string) {
+    return this.configService.get("diag/results/" + id);
+  }
 }
