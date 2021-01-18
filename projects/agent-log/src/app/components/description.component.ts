@@ -10,10 +10,10 @@ import { CommonService } from '../services/common.service';
 export class DescriptionComponent {
     
     constructor (private commonService: CommonService) {
-        this.fillResultGrid();
+        // this.fillResultGrid();
       }
 
-    @Input() requestId: string;
+    @Input("init") requestId: string;
     @Output() close =  new EventEmitter<void>();
     showDesc: boolean = true;
     skip = 0;
@@ -34,7 +34,7 @@ export class DescriptionComponent {
     }
 
     fillResultGrid() {
-        this.commonService.getAgentResults().subscribe(success => {
+        this.commonService.getAgentResultDesc(this.requestId).subscribe(success => {
           this.items = success;
           this.datasource.data = this.items;
           this.loadItems();

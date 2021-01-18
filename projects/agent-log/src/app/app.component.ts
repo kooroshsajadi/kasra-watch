@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
-import { JalaliPipe } from './shared/jalali-pipe';
 import * as moment from 'jalali-moment';
 
 
@@ -24,6 +22,7 @@ export class AppComponent{
   datasource: any = [];
   pageSize = 10;
   private items = new Array();
+  requestId: string;
 
   private loadItems(): void {
     this.datasource = {
@@ -48,7 +47,9 @@ export class AppComponent{
   }
 
   onShowDesc({ sender, rowIndex, columnIndex, dataItem, isEdited }) {
+    debugger
     if(columnIndex === 3) {
+      this.requestId = this.datasource.data[rowIndex].RequestId;
       this.showDesc = true;
     }
   }

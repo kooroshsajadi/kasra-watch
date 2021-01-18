@@ -33,4 +33,4 @@
 
   <ng-template kendoGridNoRecordsTemplate></ng-template>
 </kendo-grid>
-<app-description *ngIf = "showDesc" (close) = "onHandleClose()"></app-description>
+<app-description [init] = "requestId" *ngIf = "showDesc" (close) = "onHandleClose()"></app-description>
