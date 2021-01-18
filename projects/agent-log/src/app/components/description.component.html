@@ -9,26 +9,50 @@
         [skip]="skip"
         >
             <kendo-grid-column
-            field= "accountName"
-            title= "نام"
+            field= "problemName"
+            title= "نام قانون"
             >
             </kendo-grid-column>
         
             <kendo-grid-column
-                field= "lastUpdate"
-                title= "آخرین به روزرسانی"
+                field= "ProblemLevelName"
+                title= "درجه"
             >
             </kendo-grid-column>
         
             <kendo-grid-column
-                field = "status"
+                field = "ProblemModuleName"
+                title = "سیستم"
+            >
+            </kendo-grid-column>
+        
+            <kendo-grid-column
+                field = "ProblemTypeName"
+                title = "نوع مشکل"
+            >
+            </kendo-grid-column>
+
+            <kendo-grid-column
+                field = "StatusText"
                 title = "وضعیت"
             >
             </kendo-grid-column>
-        
+
             <kendo-grid-column
-                field = "description"
-                title = "بیشتر"
+                field = "problemCountText"
+                title = "تعداد"
+            >
+            </kendo-grid-column>
+
+            <kendo-grid-column
+                field = "OccurrenceDateTimeToPersian"
+                title = "تاریخ و زمان اجرا"
+            >
+            </kendo-grid-column>
+
+            <kendo-grid-column
+                field = "ExecutionTimeInTimeSpan"
+                title = "مدت زمان اجرا"
             >
             </kendo-grid-column>
 

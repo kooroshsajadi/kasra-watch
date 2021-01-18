@@ -55,9 +55,6 @@ export class AppComponent{
 
   fillResultGrid() {
     this.commonService.getAgentResults().subscribe(success => {
-      console.log(success)
-      console.log(success.message)
-      console.log(success.data)
       this.items = success;
       this.datasource.data = this.items;
       this.datasource.data.forEach(row => {
