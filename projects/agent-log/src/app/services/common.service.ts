@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Result } from '../shared/models/result.model';
 import { ConfigService } from './config.service';
 import {map} from 'rxjs/operators';
+import { ResultDescription } from '../shared/models/result-description.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,13 @@ export class CommonService {
     );
   }
 
-  public getAgentResultDesc(id: string) {
-    return this.configService.get("diag/results/" + id);
+  public getAgentResultDesc(id: string) : Observable<ResultDescription[]> {
+    return this.configService.get("diag/results/" + id).pipe(
+      map(data => {
+        return data.map(data => {
+          return new Result().deserialize(data);
+        });
+      })
+    );
   }
 }

@@ -40,11 +40,15 @@
                 field = "OccurrenceDateTime"
                 title = "تاریخ و زمان اجرا"
             >
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div>{{ dataItem.OccurrenceDateTime | jalali }}</div>
+              </ng-template>
+            </ng-template>
             </kendo-grid-column>
 
             <kendo-grid-column
                 field = "ExecutionTime"
-                title = "(میلی ثانیه)مدت زمان اجرا"
+                title = "(ms)مدت زمان اجرا"
             >
             </kendo-grid-column>
 

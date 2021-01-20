@@ -36,9 +36,6 @@ export class DescriptionComponent {
     getResultDescItems() {
         this.commonService.getAgentResultDesc(this.commonService.selectedRowRequestId).subscribe(success => {
           this.items = success;
-          this.items.forEach(item => {
-            item.OccurrenceDateTime = moment(item.OccurrenceDateTime).locale('fa').format('YYYY/M/D HH:mm:ss');
-          });
           this.loadItems();
         });
     }
