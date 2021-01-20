@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
 import * as moment from 'jalali-moment';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import * as moment from 'jalali-moment';
 })
 export class AppComponent{
 
-  constructor (private commonService: CommonService) {
+  constructor (private commonService: CommonService, private sanitizer: DomSanitizer) {
     this.fillResultGrid();
     // this.loadGrid();
   }
@@ -63,12 +64,37 @@ export class AppComponent{
         if (row.Status === 0) {
           row.Status = "عادی";
         }
-        else {
-          row.Status = "حاد";
+        else if (row.Status === 1){
+          row.Status = "دارای خطا";
         }
+        else if (row.Status === 2) {
+          row.Status = "دارای هشدار";
+        }
+
         row.LatestUpdateOn = moment(row.LatestUpdateOn).locale('fa').format('YYYY/M/D');
       });
       this.loadItems();
     });
+  }
+
+  public colorCode(status: string): SafeStyle {
+    let result;
+
+    switch (status) {
+     case 'عادی' :
+       result = '#0000ff';
+       break;
+     case 'دارای خطا' :
+       result = '#ff0000';
+       break;
+      case 'دارای هشدار' :
+        result = '#ffff00';
+        break;
+     default:
+       result = 'transparent';
+       break;
+    }
+
+    return this.sanitizer.bypassSecurityTrustStyle(result);
   }
 }

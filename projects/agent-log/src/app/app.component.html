@@ -22,6 +22,11 @@
     field = "Status"
     title = "وضعیت"
     >
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span [style.color]="colorCode(dataItem.Status)">
+        {{ dataItem.Status }}
+      </span>
+    </ng-template>
   </kendo-grid-column>
 
   <kendo-grid-column
