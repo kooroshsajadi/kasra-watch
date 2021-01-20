@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { process, State } from '@progress/kendo-data-query';
 import * as moment from 'jalali-moment';
 import { CommonService } from '../services/common.service';
 
@@ -11,9 +12,13 @@ import { CommonService } from '../services/common.service';
 export class DescriptionComponent {
     
     constructor (private commonService: CommonService) {
-        this.fillResultGrid();
+        this.getResultDescItems();
       }
 
+    public state: State = {
+      skip: 0,
+      take: 5
+    };
     @Input() requestId: string;
     @Output() close =  new EventEmitter<void>();
     showDesc: boolean = true;
@@ -24,28 +29,29 @@ export class DescriptionComponent {
     public pageSizes = true;
     public previousNext = true;
     private items = new Array();
-    datasource: any = [];
+    gridData: GridDataResult;
  
     private loadItems(): void {
-        this.datasource = {
-            data: this.items.slice(this.skip, this.skip + this.pageSize),
-            total: this.items.length
-        };
+      this.gridData = process(this.items, this.state);
+        // this.datasource = {
+        //     data: this.items.slice(this.skip, this.skip + this.pageSize),
+        //     total: this.items.length
+        // };
     }
 
-    protected pageChange({ skip, take }: PageChangeEvent): void {
-        this.skip = skip;
-        this.pageSize = take;
-        this.loadItems();
+    public onChange(state: State): void {
+      this.state = state;
+      this.loadItems();
     }
 
-    fillResultGrid() {
+    getResultDescItems() {
         this.commonService.getAgentResultDesc(this.commonService.requestId).subscribe(success => {
           this.items = success;
           this.items.forEach(item => {
-            item.OccurrenceDateTime = moment(item.OccurrenceDateTime).locale('fa').format('YYYY/M/D');
+            item.OccurrenceDateTime = moment(item.OccurrenceDateTime).locale('fa').format('YYYY/M/D HH:mm:ss');
           });
-        this.datasource.data = this.items;
+          // this.datasource.data = process(this.items, this.state);
+        // this.datasource.data = this.items;
           this.loadItems();
         });
     }
