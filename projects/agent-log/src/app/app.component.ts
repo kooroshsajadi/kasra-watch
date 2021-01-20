@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
 import * as moment from 'jalali-moment';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -20,19 +20,9 @@ export class AppComponent{
     skip: 0,
     take: 5
   };
-  
   showDesc: boolean = false;
   gridData: GridDataResult;
-  pageSize = 10;
   private items = new Array();
-  requestId: string;
-
-  // private loadItems(): void {
-  //   this.datasource = {
-  //       data: this.items.slice(this.skip, this.skip + this.pageSize),
-  //       total: this.items.length
-  //   };
-  // }
 
   private loadItems(): void {
     this.gridData = process(this.items, this.state);
@@ -49,17 +39,14 @@ export class AppComponent{
 
   onShowDesc({ sender, rowIndex, columnIndex, dataItem, isEdited }) {
     if(columnIndex === 3) {
-      // this.descComponent.requestId = this.datasource.data[rowIndex].RequestId;
       this.showDesc = true;
-      this.commonService.requestId = this.gridData.data[rowIndex].RequestId;
-      // this.requestId = this.datasource.data[rowIndex].RequestId;
+      this.commonService.selectedRowRequestId = this.gridData.data[rowIndex].RequestId;
     }
   }
 
   getResultItems() {
     this.commonService.getAgentResults().subscribe(success => {
       this.items = success;
-      // this.datasource.data = this.items;
       this.items.forEach(row => {
         row.Description = "...";
         if (row.Status === 0) {
@@ -79,7 +66,7 @@ export class AppComponent{
   }
 
   public colorCode(status: string): SafeStyle {
-    let result;
+    let result: string;
 
     switch (status) {
      case 'عادی' :
