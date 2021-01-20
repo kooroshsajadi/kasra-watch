@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
 import * as moment from 'jalali-moment';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import { State } from '@progress/kendo-data-query';
+import { process, State } from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,7 @@ import { State } from '@progress/kendo-data-query';
 export class AppComponent{
 
   constructor (private commonService: CommonService, private sanitizer: DomSanitizer) {
-    this.fillResultGrid();
-    // this.loadGrid();
+    this.getResultItems();
   }
 
   public state: State = {
@@ -23,21 +22,24 @@ export class AppComponent{
   };
   
   showDesc: boolean = false;
-  skip = 0;
-  datasource: any = [];
+  gridData: GridDataResult;
   pageSize = 10;
   private items = new Array();
   requestId: string;
 
+  // private loadItems(): void {
+  //   this.datasource = {
+  //       data: this.items.slice(this.skip, this.skip + this.pageSize),
+  //       total: this.items.length
+  //   };
+  // }
+
   private loadItems(): void {
-    this.datasource = {
-        data: this.items.slice(this.skip, this.skip + this.pageSize),
-        total: this.items.length
-    };
+    this.gridData = process(this.items, this.state);
   }
 
-  public pageChange(event: PageChangeEvent): void {
-    this.skip = event.skip;
+  public onChange(state: State): void {
+    this.state = state;
     this.loadItems();
   }
 
@@ -49,12 +51,12 @@ export class AppComponent{
     if(columnIndex === 3) {
       // this.descComponent.requestId = this.datasource.data[rowIndex].RequestId;
       this.showDesc = true;
-      this.commonService.requestId = this.datasource.data[rowIndex].RequestId;
+      this.commonService.requestId = this.gridData.data[rowIndex].RequestId;
       // this.requestId = this.datasource.data[rowIndex].RequestId;
     }
   }
 
-  fillResultGrid() {
+  getResultItems() {
     this.commonService.getAgentResults().subscribe(success => {
       this.items = success;
       // this.datasource.data = this.items;

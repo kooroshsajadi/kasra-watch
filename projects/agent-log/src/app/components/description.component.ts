@@ -22,21 +22,11 @@ export class DescriptionComponent {
     @Input() requestId: string;
     @Output() close =  new EventEmitter<void>();
     showDesc: boolean = true;
-    skip = 0;
-    pageSize = 10;
-    public buttonCount = 10;
-    public info = true;
-    public pageSizes = true;
-    public previousNext = true;
     private items = new Array();
     gridData: GridDataResult;
  
     private loadItems(): void {
       this.gridData = process(this.items, this.state);
-        // this.datasource = {
-        //     data: this.items.slice(this.skip, this.skip + this.pageSize),
-        //     total: this.items.length
-        // };sdsd
     }
 
     public onChange(state: State): void {
@@ -50,8 +40,6 @@ export class DescriptionComponent {
           this.items.forEach(item => {
             item.OccurrenceDateTime = moment(item.OccurrenceDateTime).locale('fa').format('YYYY/M/D HH:mm:ss');
           });
-          // this.datasource.data = process(this.items, this.state);
-        // this.datasource.data = this.items;
           this.loadItems();
         });
     }

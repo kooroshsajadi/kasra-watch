@@ -1,9 +1,10 @@
 <kendo-grid
-[data] = "datasource"
+[data] = "gridData"
 [sortable] = "true"
-[pageable] = "true"
-[pageSize] = "pageSize"
-[skip] = "skip"
+[pageSize]="state.take"
+[skip]="state.skip"
+[pageable]="true"
+(dataStateChange)="onChange($event)"
 (cellClick) = "onShowDesc($event)"
 >
   <kendo-grid-column
