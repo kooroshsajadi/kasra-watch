@@ -5,7 +5,9 @@
         [data]="gridData"
         [pageSize]="state.take"
         [skip]="state.skip"
-        [pageable]="true"
+        [pageable]="{
+            info: false
+        }">
         (dataStateChange)="onChange($event)"
         
         style="height: 90%;position: absolute;margin-right: 15px;margin-top: -7px;"

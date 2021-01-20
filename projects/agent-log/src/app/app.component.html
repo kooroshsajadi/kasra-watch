@@ -3,7 +3,9 @@
 [sortable] = "true"
 [pageSize]="state.take"
 [skip]="state.skip"
-[pageable]="true"
+[pageable]="{
+  info: false
+}">
 (dataStateChange)="onChange($event)"
 (cellClick) = "onShowDesc($event)"
 >
