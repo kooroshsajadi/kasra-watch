@@ -82,7 +82,7 @@ export class AppComponent{
 
     switch (status) {
      case 'عادی' :
-       result = '#0000ff';
+       result = '#008000';
        break;
      case 'دارای خطا' :
        result = '#ff0000';
