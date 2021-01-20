@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PageChangeEvent } from '@progress/kendo-angular-grid';
+import * as moment from 'jalali-moment';
 import { CommonService } from '../services/common.service';
 
 @Component({
@@ -10,14 +11,18 @@ import { CommonService } from '../services/common.service';
 export class DescriptionComponent {
     
     constructor (private commonService: CommonService) {
-        // this.fillResultGrid();
+        this.fillResultGrid();
       }
 
-    @Input("init") requestId: string;
+    @Input() requestId: string;
     @Output() close =  new EventEmitter<void>();
     showDesc: boolean = true;
     skip = 0;
     pageSize = 10;
+    public buttonCount = 10;
+    public info = true;
+    public pageSizes = true;
+    public previousNext = true;
     private items = new Array();
     datasource: any = [];
  
@@ -28,15 +33,19 @@ export class DescriptionComponent {
         };
     }
 
-    public pageChange(event: PageChangeEvent): void {
-        this.skip = event.skip;
+    protected pageChange({ skip, take }: PageChangeEvent): void {
+        this.skip = skip;
+        this.pageSize = take;
         this.loadItems();
     }
 
     fillResultGrid() {
-        this.commonService.getAgentResultDesc(this.requestId).subscribe(success => {
+        this.commonService.getAgentResultDesc(this.commonService.requestId).subscribe(success => {
           this.items = success;
-          this.datasource.data = this.items;
+          this.items.forEach(item => {
+            item.OccurrenceDateTime = moment(item.OccurrenceDateTime).locale('fa').format('YYYY/M/D');
+          });
+        this.datasource.data = this.items;
           this.loadItems();
         });
     }

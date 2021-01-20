@@ -10,6 +10,7 @@ export class CommonService {
   constructor(private http: HttpClient, private configService: ConfigService) { }
 
   public diagnosticsResult: any = [];
+  public requestId: any;
 
   public getAgentResults() {
     return this.configService.get('diag/results');

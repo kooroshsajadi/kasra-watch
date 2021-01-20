@@ -3,10 +3,8 @@
     <div>
         <kendo-grid 
         [data]="datasource"
-        [sortable]="true"
-        [pageable]="true"
-        [pageSize]="pageSize"
-        [skip]="skip"
+        
+        style="height: 90%;position: absolute;margin-right: 15px;margin-top: -7px;"
         >
             <kendo-grid-column
             field= "ProblemName"
@@ -33,25 +31,13 @@
             </kendo-grid-column>
 
             <kendo-grid-column
-                field = "StatusText"
-                title = "وضعیت"
-            >
-            </kendo-grid-column>
-
-            <kendo-grid-column
-                field = "problemCountText"
-                title = "تعداد"
-            >
-            </kendo-grid-column>
-
-            <kendo-grid-column
-                field = "OccurrenceDateTimeToPersian"
+                field = "OccurrenceDateTime"
                 title = "تاریخ و زمان اجرا"
             >
             </kendo-grid-column>
 
             <kendo-grid-column
-                field = "ExecutionTimeInTimeSpan"
+                field = "ExecutionTime"
                 title = "مدت زمان اجرا"
             >
             </kendo-grid-column>
@@ -59,7 +45,7 @@
             <ng-template kendoGridNoRecordsTemplate></ng-template>
         </kendo-grid>
     </div>
-    <div class="description-box-actions">
+    <div class="description-box-actions" style="position: absolute;bottom: 1%;left: 1.5%;">
         <button kendoButton (click)="onClose()">بستن</button>
     </div>
 </div>

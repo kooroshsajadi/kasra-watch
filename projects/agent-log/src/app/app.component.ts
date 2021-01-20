@@ -3,7 +3,6 @@ import { PageChangeEvent } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
 import * as moment from 'jalali-moment';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -47,10 +46,11 @@ export class AppComponent{
   }
 
   onShowDesc({ sender, rowIndex, columnIndex, dataItem, isEdited }) {
-    debugger
     if(columnIndex === 3) {
-      this.requestId = this.datasource.data[rowIndex].RequestId;
+      // this.descComponent.requestId = this.datasource.data[rowIndex].RequestId;
       this.showDesc = true;
+      this.commonService.requestId = this.datasource.data[rowIndex].RequestId;
+      // this.requestId = this.datasource.data[rowIndex].RequestId;
     }
   }
 

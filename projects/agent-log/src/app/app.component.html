@@ -1,4 +1,4 @@
-<kendo-grid 
+<kendo-grid
 [data] = "datasource"
 [sortable] = "true"
 [pageable] = "true"
@@ -33,4 +33,4 @@
 
   <ng-template kendoGridNoRecordsTemplate></ng-template>
 </kendo-grid>
-<app-description [init] = "requestId" *ngIf = "showDesc" (close) = "onHandleClose()"></app-description>
+<app-description *ngIf = "showDesc" [requestId] = "requestId" (close) = "onHandleClose()"></app-description>

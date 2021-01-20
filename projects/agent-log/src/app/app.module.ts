@@ -9,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'
 import { DescriptionComponent } from './components/description.component'
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-// TODO npm uninstall -S angular-in-memory-web-api
-// TODO npm uninstall -D angular-in-memory-web-api
 
 @NgModule({
   declarations: [
@@ -29,8 +27,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
   providers: [
     { provide: RTL, useValue: true },
     CommonService,
-    HttpClient,
-    
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })
