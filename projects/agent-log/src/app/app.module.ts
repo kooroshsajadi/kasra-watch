@@ -9,11 +9,15 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'
 import { DescriptionComponent } from './components/description.component'
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { JalaliPipe } from './shared/pipes/jalali-pipe';
+import { LiteralStatus } from './shared/pipes/literal-status.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    JalaliPipe,
+    LiteralStatus
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,3 @@
-.warningState {
-    color: yellow;
-}
-
-.errorState {
-    color: red;
-}
-
-.normalState {
-    color: blue;
-}
+.gold .statusColumn { background-color: #FFBA80; }
+.green .statusColumn { background-color: #B2F699; }
+.yellow .statusColumn { background-color: hsl(59, 98%, 60%); }

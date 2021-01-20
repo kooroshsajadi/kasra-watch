@@ -3,9 +3,10 @@
 [sortable] = "true"
 [pageSize]="state.take"
 [skip]="state.skip"
+[rowClass]="rowCallback"
 [pageable]="{
   info: false
-}">
+}"
 (dataStateChange)="onChange($event)"
 (cellClick) = "onShowDesc($event)"
 >
@@ -18,25 +19,34 @@
   <kendo-grid-column
     field = "LatestUpdateOn"
     title = "آخرین به روزرسانی"
-    >
+  >
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div>{{ dataItem.LatestUpdateOn | jalali }}</div>
+    </ng-template>
   </kendo-grid-column>
 
   <kendo-grid-column
+    [class]="{'statusColumn': true}"
     field = "Status"
     title = "وضعیت"
     >
     <ng-template kendoGridCellTemplate let-dataItem>
+      {{ dataItem.Status | literalStatus }}
+    </ng-template>
+    <!-- <ng-template kendoGridCellTemplate let-dataItem>
       <span [style.background-color]="colorCode(dataItem.Status)" [style.border-color]="colorCode(dataItem.Status)" style="border-radius: 25px; width: 150%;height: 150%;color: whitesmoke;border-style: solid;border-width: 5px;">
         {{ dataItem.Status }}
       </span>
-    </ng-template>
+    </ng-template> -->
   </kendo-grid-column>
 
   <kendo-grid-column
     field = "Description"
     title = "بیشتر"
     >
-    ...
+    <ng-template kendoGridCellTemplate>
+      {{colMoreValue}}
+    </ng-template>
   </kendo-grid-column>
 
   <ng-template kendoGridNoRecordsTemplate></ng-template>

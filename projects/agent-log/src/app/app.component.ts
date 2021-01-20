@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
-import * as moment from 'jalali-moment';
+import { RowClassArgs } from '@progress/kendo-angular-grid';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { process, State } from '@progress/kendo-data-query';
+import { Result } from './shared/models/result.model';
 
 @Component({
   selector: 'app-root',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent{
 
@@ -22,7 +24,19 @@ export class AppComponent{
   };
   showDesc: boolean = false;
   gridData: GridDataResult;
-  private items = new Array();
+  private items: Result[];
+  colMoreValue: string = "..."
+
+  public rowCallback = (context: RowClassArgs) => {
+    switch (context.dataItem.Status) {
+      case 0:
+        return {green : true};
+      case 1:
+        return {gold : true};
+      case 2:
+        return {yellow: true};
+     }
+   }
 
   private loadItems(): void {
     this.gridData = process(this.items, this.state);
@@ -45,25 +59,33 @@ export class AppComponent{
   }
 
   getResultItems() {
+    // this.items = this.commonService.getAgentResults()
+    // this.loadItems();
     this.commonService.getAgentResults().subscribe(success => {
       this.items = success;
-      this.items.forEach(row => {
-        row.Description = "...";
-        if (row.Status === 0) {
-          row.Status = "عادی";
-        }
-        else if (row.Status === 1){
-          row.Status = "بحرانی";
-        }
-        else if (row.Status === 2) {
-          row.Status = "دارای هشدار";
-        }
-
-        row.LatestUpdateOn = moment(row.LatestUpdateOn).locale('fa').format('YYYY/M/D HH:mm:ss');
-      });
       this.loadItems();
     });
   }
+  // getResultItems() {
+  //   this.commonService.getAgentResults().subscribe(success => {
+  //     this.items = success;
+  //     this.items.forEach(row => {
+  //       row.Description = "...";
+  //       if (row.Status === 0) {
+  //         row.Status = "عادی";
+  //       }
+  //       else if (row.Status === 1){
+  //         row.Status = "بحرانی";
+  //       }
+  //       else if (row.Status === 2) {
+  //         row.Status = "دارای هشدار";
+  //       }
+
+  //       row.LatestUpdateOn = moment(row.LatestUpdateOn).locale('fa').format('YYYY/M/D HH:mm:ss');
+  //     });
+  //     this.loadItems();
+  //   });
+  // }
 
   public colorCode(status: string): SafeStyle {
     let result: string;
