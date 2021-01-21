@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { CommonService } from './services/common.service';
 import { RowClassArgs } from '@progress/kendo-angular-grid';
@@ -8,7 +8,6 @@ import { Result } from './shared/models/result.model';
 
 @Component({
   selector: 'app-root',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

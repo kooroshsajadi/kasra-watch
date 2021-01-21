@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { process, State } from '@progress/kendo-data-query';
-import * as moment from 'jalali-moment';
 import { CommonService } from '../services/common.service';
+import { RowClassArgs } from '@progress/kendo-angular-grid';
+import { ResultDescription } from '../shared/models/result-description.model';
 
 @Component({
    selector:  'app-description',
@@ -21,7 +22,7 @@ export class DescriptionComponent {
     };
     @Output() close =  new EventEmitter<void>();
     showDesc: boolean = true;
-    private items = new Array();
+    private items: ResultDescription[];
     gridData: GridDataResult;
  
     private loadItems(): void {
@@ -33,11 +34,46 @@ export class DescriptionComponent {
       this.loadItems();
     }
 
+    public rowCallback = (context: RowClassArgs) => {
+      switch (context.dataItem.ProblemLevelName) {
+        case "Information":
+          return {green : true};
+        case "Error":
+          return {gold : true};
+        case "Warning":
+          return {yellow: true};
+       }
+     }
+
     getResultDescItems() {
         this.commonService.getAgentResultDesc(this.commonService.selectedRowRequestId).subscribe(success => {
           this.items = success;
+          this.orderItems()
           this.loadItems();
         });
+    }
+
+    orderItems() {
+      var temp = new Array<ResultDescription>()
+      this.items.forEach(item => {
+        if (item.ProblemLevelName.toLowerCase() === "error") {
+          temp.push(item);
+        }
+      });
+      this.items.forEach(item => {
+        if (item.ProblemLevelName.toLowerCase() === "warning") {
+          temp.push(item);
+        }
+      });
+      this.items.forEach(item => {
+        if (item.ProblemLevelName.toLowerCase() === "information") {
+          temp.push(item);
+        }
+      });
+      this.items.length = 0
+      temp.forEach(data => {
+        this.items.push(data);
+      });
     }
 
     onClose() {

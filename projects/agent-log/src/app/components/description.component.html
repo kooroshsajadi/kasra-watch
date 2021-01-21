@@ -5,9 +5,10 @@
         [data]="gridData"
         [pageSize]="state.take"
         [skip]="state.skip"
+        [rowClass]="rowCallback"
         [pageable]="{
             info: false
-        }">
+        }"
         (dataStateChange)="onChange($event)"
         
         style="height: 90%;position: absolute;margin-right: 15px;margin-top: -7px;"
@@ -21,6 +22,7 @@
             <kendo-grid-column
                 field= "ProblemLevelName"
                 title= "درجه"
+                [class]="{'statusColumn': true}"
             >
             </kendo-grid-column>
         
@@ -41,8 +43,9 @@
                 title = "تاریخ و زمان اجرا"
             >
             <ng-template kendoGridCellTemplate let-dataItem>
-                <div>{{ dataItem.OccurrenceDateTime | jalali }}</div>
-              </ng-template>
+                <div>
+                    {{ dataItem.OccurrenceDateTime | jalali }}
+                </div>
             </ng-template>
             </kendo-grid-column>
 
