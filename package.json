@@ -37,6 +37,7 @@
     "@progress/kendo-drawing": "^1.0.0",
     "@progress/kendo-licensing": "^1.0.2",
     "@progress/kendo-theme-bootstrap": "^4.29.0",
+    "@progress/kendo-theme-material": "^3.30.0",
     "jalali-moment": "^3.3.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
