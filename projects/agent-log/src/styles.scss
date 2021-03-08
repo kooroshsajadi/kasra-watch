@@ -4,9 +4,9 @@
 @import "~@progress/kendo-theme-bootstrap/scss/button/_index.scss";
 @import "~@progress/kendo-theme-bootstrap/scss/action-buttons/_index.scss";
 
-.gold .statusColumn { background-color: #FFBA80; }
-.green .statusColumn { background-color: #B2F699; }
-.yellow .statusColumn { background-color: hsl(59, 98%, 60%); }
+.red .statusColumn { color: #CC4E4E; }
+.blue .statusColumn { color: #1866BF; }
+.yellow .statusColumn { color: #C19D3C; }
 
 // @font-face {
 //     font-family: vazirfd;

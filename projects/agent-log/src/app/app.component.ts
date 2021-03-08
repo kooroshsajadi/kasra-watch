@@ -29,9 +29,9 @@ export class AppComponent{
   public rowCallback = (context: RowClassArgs) => {
     switch (context.dataItem.Status) {
       case 0:
-        return {green : true};
+        return {blue : true};
       case 1:
-        return {gold : true};
+        return {red : true};
       case 2:
         return {yellow: true};
      }
