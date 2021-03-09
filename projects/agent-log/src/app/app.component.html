@@ -1,11 +1,15 @@
-<div style="padding: 35px 79px 35px 79px">
+<div class="main">
+  <p class="title">گزارشات دیاگ</p>
+  <p class="subtitle">گزارش اجرای کسرا دیاگ بر روی سرور مشتریان</p>
   <kendo-grid
+  [class]="grid"
   [data] = "gridData"
   [sortable] = "true"
-  [pageSize]="state.take"
-  [skip]="state.skip"
-  [rowClass]="rowCallback"
-  [pageable]="{
+  [pageSize] = "state.take"
+  scrollable="none"
+  [skip] = "state.skip"
+  [rowClass] = "rowCallback"
+  [pageable] = "{
     info: false
   }"
   (dataStateChange)="onChange($event)"

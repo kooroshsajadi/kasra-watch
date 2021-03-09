@@ -18,6 +18,6 @@ export class LiteralStatus implements PipeTransform {
         return "بحرانی";
       case 2:
         return "دارای هشدار";
-     }
+    }
   }
 }

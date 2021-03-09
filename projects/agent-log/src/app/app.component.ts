@@ -19,7 +19,7 @@ export class AppComponent{
 
   public state: State = {
     skip: 0,
-    take: 5
+    take: 10
   };
   showDesc: boolean = false;
   gridData: GridDataResult;

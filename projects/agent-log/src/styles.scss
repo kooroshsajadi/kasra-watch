@@ -7,14 +7,17 @@
 .red .statusColumn { color: #CC4E4E; }
 .blue .statusColumn { color: #1866BF; }
 .yellow .statusColumn { color: #C19D3C; }
-// $pager-item-bg:#53578E;
+body {
+    background: #ECECEC 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
 
-// @font-face {
-//     font-family: vazirfd;
-//     font-style: normal;
-//     src: url('./assets/fonts/Vazir-FD.ttf');
-// }
+@font-face {
+    font-family: vazirfd;
+    font-style: normal;
+    src: url('./assets/fonts/Vazir-FD.ttf');
+}
 
-// * {
-//     font-family: "vazirfd";
-// }
+* {
+    font-family: "vazirfd";
+}
