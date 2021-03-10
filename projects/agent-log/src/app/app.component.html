@@ -1,6 +1,35 @@
 <div class="main">
   <p class="title">گزارشات دیاگ</p>
   <p class="subtitle">گزارش اجرای کسرا دیاگ بر روی سرور مشتریان</p>
+  <div class="filter-box">
+    <p class="filter-title">فیلتر</p>
+    <div class="d-flex flex-row-reverse">
+      <div style="margin-right: 10px;">
+        <p style="font: #707070;font-size: smaller;">مشتری</p>
+        <kendo-dropdownlist [data]="accountNameList" style="margin-top: -10px;width: 513px;">
+        </kendo-dropdownlist>
+      </div>
+      <div style="margin-right: 10px;">
+        <p style="font: #707070;font-size: smaller;">وضعیت</p>
+        <kendo-dropdownlist [data]="accountNameList" style="margin-top: -10px;width: 192px;">
+        </kendo-dropdownlist>
+      </div>
+      <div style="margin-right: 10px;">
+        <p style="font: #707070;font-size: smaller;">تعداد قوانین دارای خطا</p>
+        <kendo-dropdownlist [data]="accountNameList" style="margin-top: -10px;width: 192px;">
+        </kendo-dropdownlist>
+      </div>
+      <div style="margin-right: 10px;">
+        <p style="font: #707070;font-size: smaller;">تاریخ</p>
+        <kendo-dropdownlist [data]="accountNameList" style="margin-top: -10px;width: 160px;">
+        </kendo-dropdownlist>
+      </div>
+      <div style="margin-right: 10px;">
+        <kendo-dropdownlist [data]="accountNameList" style="margin-top: -10px;width: 160px;">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+  </div>
   <kendo-grid
   [data] = "gridData"
   [sortable] = "true"
