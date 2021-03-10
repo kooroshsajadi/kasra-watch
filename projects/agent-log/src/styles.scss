@@ -21,3 +21,28 @@ body {
 * {
     font-family: "vazirfd";
 }
+
+.k-grid
+{
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    overflow:hidden;
+}
+ 
+.k-grid-header,
+.k-grid-header table
+{
+    -moz-border-radius:8px 8px 0 0;
+    -webkit-border-radius:8px 8px 0 0;
+    border-radius:8px 8px 0 0;
+    overflow:hidden;
+}
+ 
+.k-grid-pager
+{
+    -moz-border-radius:0 0 8px 8px;
+    -webkit-border-radius:0 0 8px 8px;
+    border-radius:0 0 8px 8px;
+    overflow:hidden;
+}
