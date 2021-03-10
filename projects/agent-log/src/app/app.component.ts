@@ -21,6 +21,7 @@ export class AppComponent{
     skip: 0,
     take: 10
   };
+  public accountNameList: Array<string> = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', '2X-Large'];
   showDesc: boolean = false;
   gridData: GridDataResult;
   private items: Result[];

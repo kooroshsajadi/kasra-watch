@@ -11,6 +11,7 @@ import { DescriptionComponent } from './components/description.component'
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { JalaliPipe } from './shared/pipes/jalali-pipe';
 import { LiteralStatus } from './shared/pipes/literal-status.pipe';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LiteralStatus } from './shared/pipes/literal-status.pipe';
     GridModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    DropDownsModule,
     ButtonsModule
   ],
 
