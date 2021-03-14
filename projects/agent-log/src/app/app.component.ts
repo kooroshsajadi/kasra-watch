@@ -5,6 +5,7 @@ import { RowClassArgs } from '@progress/kendo-angular-grid';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { process, State } from '@progress/kendo-data-query';
 import { Result } from './shared/models/result.model';
+import { LiteralStatus } from './shared/pipes/literal-status.pipe';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { Result } from './shared/models/result.model';
 })
 export class AppComponent{
 
-  constructor (private commonService: CommonService, private sanitizer: DomSanitizer) {
+  constructor (private commonService: CommonService, private sanitizer: DomSanitizer, private statusPipe: LiteralStatus) {
     this.getResultItems();
   }
 
@@ -21,10 +22,16 @@ export class AppComponent{
     skip: 0,
     take: 10
   };
-  public accountNameList: Array<string> = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', '2X-Large'];
+
+  
+  public accountNameList: Array<string> = [];
+  public statusSelectedValue = "";
+  public accountNameSelectedValue = "";
+  public statusList: Array<string> = ["", "دارای هشدار", "بحرانی", "عادی"];
+  public accountNameListt: Array<string>;
   showDesc: boolean = false;
   gridData: GridDataResult;
-  private items: Result[];
+  private allItems: Result[];
   colMoreValue: string = "..."
 
   public rowCallback = (context: RowClassArgs) => {
@@ -38,13 +45,59 @@ export class AppComponent{
      }
    }
 
-  private loadItems(): void {
-    this.gridData = process(this.items, this.state);
+  private loadAccountNameList(): void {
+    this.accountNameList.push("");
+    for(var i = 0; i < this.allItems.length; ++i) {
+      this.accountNameList.push(
+        this.allItems[i].AccountName
+      );
+    }
+  }
+
+  private loadGridItems(): void {
+    this.gridData = process(this.allItems, this.state);
   }
 
   public onChange(state: State): void {
     this.state = state;
-    this.loadItems();
+    this.loadGridItems();
+  }
+
+  public clearFilters(): void {
+    this.gridData = process(this.allItems, this.state);
+  }
+
+  public filterData(): void {
+    var filteredItems: Result[] = [];
+    if(this.accountNameSelectedValue != "") {
+      this.allItems.forEach(element => {
+        if(element.AccountName == this.accountNameSelectedValue) {
+          if(this.statusSelectedValue != "") {
+            this.allItems.forEach(element => {
+              if(this.statusPipe.transform(element.Status) == this.statusSelectedValue) {
+                filteredItems.push(element);
+              }
+            });
+          }
+          else{
+            filteredItems.push(element);
+          }
+        }
+      });
+    }
+    else {
+      if(this.statusSelectedValue != "") {
+        this.allItems.forEach(element => {
+          if(this.statusPipe.transform(element.Status) == this.statusSelectedValue) {
+            filteredItems.push(element);
+          }
+        });
+      }
+    }
+    if(this.accountNameSelectedValue == "" && this.statusSelectedValue == "") {
+      this.gridData = process(this.allItems, this.state);
+    }
+    this.gridData = process(filteredItems, this.state);
   }
 
   onHandleClose() {
@@ -59,33 +112,12 @@ export class AppComponent{
   }
 
   getResultItems() {
-    // this.items = this.commonService.getAgentResults()
-    // this.loadItems();
     this.commonService.getAgentResults().subscribe(success => {
-      this.items = success;
-      this.loadItems();
+      this.allItems = success;
+      this.loadGridItems();
+      this.loadAccountNameList();
     });
   }
-  // getResultItems() {
-  //   this.commonService.getAgentResults().subscribe(success => {
-  //     this.items = success;
-  //     this.items.forEach(row => {
-  //       row.Description = "...";
-  //       if (row.Status === 0) {
-  //         row.Status = "عادی";
-  //       }
-  //       else if (row.Status === 1){
-  //         row.Status = "بحرانی";
-  //       }
-  //       else if (row.Status === 2) {
-  //         row.Status = "دارای هشدار";
-  //       }
-
-  //       row.LatestUpdateOn = moment(row.LatestUpdateOn).locale('fa').format('YYYY/M/D HH:mm:ss');
-  //     });
-  //     this.loadItems();
-  //   });
-  // }
 
   public colorCode(status: string): SafeStyle {
     let result: string;

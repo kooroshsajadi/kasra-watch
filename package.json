@@ -38,7 +38,10 @@
     "@progress/kendo-licensing": "^1.0.2",
     "@progress/kendo-theme-bootstrap": "^4.29.0",
     "@progress/kendo-theme-material": "^3.30.0",
+    "bootstrap": "^4.6.0",
     "jalali-moment": "^3.3.9",
+    "jquery": "^3.6.0",
+    "persian-datepicker": "^1.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
