@@ -5,13 +5,13 @@
     <p class="filter-title">فیلتر</p>
     <div class="d-flex flex-row-reverse flex-wrap" style="padding-right: 5px;">
       <div class="p-1" style="min-width: 290px;width: 30%;">
-        <p style="font: #707070;font-size: smaller;">مشتری</p>
-          <kendo-dropdownlist [data]="accountNameList" id="accountNameDd" [(ngModel)]="accountNameSelectedValue" style="margin-top: -10px; position: relative; background-color: #FFFFFF;width: 100%;">
+        <p style="color: #707070;font-size: smaller;">مشتری</p>
+          <kendo-dropdownlist [data]="accountNameList" [(ngModel)]="accountNameSelectedValue" style="margin-top: -10px;width: 100%;">
           </kendo-dropdownlist>
       </div>
       <div class="p-1" style="min-width: 192px;width: 15%">
-        <p style="font: #707070;font-size: smaller;">وضعیت</p>
-        <kendo-dropdownlist [data]="statusList" [(ngModel)]="statusSelectedValue" id="statusDd" style="margin-top: -10px;background-color: #FFFFFF;width: 100%;">
+        <p style="color: #707070;font-size: smaller;">وضعیت</p>
+        <kendo-dropdownlist [data]="statusList" [(ngModel)]="statusSelectedValue" style="margin-top: -10px;width: 100%;">
         </kendo-dropdownlist>
       </div>
     </div>
@@ -41,12 +41,14 @@
     <kendo-grid-column
       field = "AccountName"
       title = "نام مشتری"
-      [headerStyle]="{'border-color': '#53578E'}"
+      [headerStyle]="{'border-color': '#53578E','background-color': '#53578E', 'color': '#FFFFFF', 'border-width': '0px'}"
+      [style]="{'border-color': '#FFFFFF'}"
     >
     </kendo-grid-column>
 
     <kendo-grid-column
-      [headerStyle]="{'border-color': '#53578E'}"
+      [headerStyle]="{'border-color': '#53578E','background-color': '#53578E', 'color': '#FFFFFF', 'border-width': '0px'}"
+      [style]="{'border-color': '#FFFFFF'}"
       [class]="{'statusColumn': true}"
       field = "Status"
       title = "وضعیت"
@@ -67,7 +69,8 @@
     <kendo-grid-column
       field = "LatestUpdateOn"
       title = "آخرین به روزرسانی"
-      [headerStyle]="{'border-color': '#53578E'}"
+      [headerStyle]="{'border-color': '#53578E','background-color': '#53578E', 'color': '#FFFFFF', 'border-width': '0px'}"
+      [style]="{'border-color': '#FFFFFF'}"
     >
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.LatestUpdateOn | jalali }}</div>
@@ -78,7 +81,8 @@
       field = "LatestUpdateOn"
       title = "تعداد قوانین خطا"
       hidden = "true"
-      [headerStyle]="{'border-color': '#53578E'}"
+      [headerStyle]="{'border-color': '#53578E','background-color': '#53578E', 'color': '#FFFFFF', 'border-width': '0px'}"
+      [style]="{'border-color': '#FFFFFF'}"
     >
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.LatestUpdateOn | jalali }}</div>
@@ -89,7 +93,8 @@
       field = "LatestUpdateOn"
       title = "بحرانی ترین قانون"
       hidden = "true"
-      [headerStyle]="{'border-color': '#53578E'}"
+      [headerStyle]="{'border-color': '#53578E','background-color': '#53578E', 'color': '#FFFFFF', 'border-width': '0px'}"
+      [style]="{'border-color': '#FFFFFF'}"
     >
       <ng-template kendoGridCellTemplate let-dataItem>
         <div>{{ dataItem.LatestUpdateOn | jalali }}</div>
@@ -99,7 +104,8 @@
     <kendo-grid-column
       field = "Description"
       title = "بیشتر"
-      [headerStyle]="{'border-color': '#53578E'}"
+      [headerStyle]="{'border-color': '#53578E','background-color': '#53578E', 'color': '#FFFFFF', 'border-width': '0px'}"
+      [style]="{'border-color': '#FFFFFF'}"
       >
       <ng-template kendoGridCellTemplate>
         {{colMoreValue}}
