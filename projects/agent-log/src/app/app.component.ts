@@ -97,7 +97,9 @@ export class AppComponent{
     if(this.accountNameSelectedValue == "" && this.statusSelectedValue == "") {
       this.gridData = process(this.allItems, this.state);
     }
-    this.gridData = process(filteredItems, this.state);
+    else{
+      this.gridData = process(filteredItems, this.state);
+    }
   }
 
   onHandleClose() {
