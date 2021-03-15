@@ -17,7 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/agent-log",
+            
+            "outputPath": "C:\\MasterMindAgile\\Tools\\WebTools\\KasraWatch\\KasraWatch\\wwwroot\\ng",
+            
             "index": "projects/agent-log/src/index.html",
             "main": "projects/agent-log/src/main.ts",
             "polyfills": "projects/agent-log/src/polyfills.ts",
